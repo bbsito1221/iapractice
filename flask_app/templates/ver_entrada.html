@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ entrada.titulo }}{% endblock %}
+
+{% block content %}
+<div class="view-wrapper">
+    <div class="view-nav">
+        <a href="{{ url_for('index') }}" class="back-link">&larr; Volver al listado general</a>
+        <div class="view-actions">
+            <a href="{{ url_for('editar_entrada', id=entrada.id) }}" class="btn btn-outline">✏ Editar</a>
+            <form method="POST" action="{{ url_for('eliminar_entrada', id=entrada.id) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta entrada de la bitácora?');" style="display:inline;">
+                <button type="submit" class="btn btn-danger">🗑 Eliminar</button>
+            </form>
+        </div>
+    </div>
+
+    <article class="entry-detail-card">
+        <header class="detail-header">
+            <div class="detail-meta">
+                <span class="badge-category">{{ entrada.categoria }}</span>
+                <span class="status-indicator status-{{ entrada.estado|lower|replace(' ', '-') }}">{{ entrada.estado }}</span>
+                <time class="detail-date">📅 {{ entrada.fecha }}</time>
+                <span class="detail-id text-muted">ID: #{{ entrada.id }}</span>
+            </div>
+            <h1 class="detail-title">{{ entrada.titulo }}</h1>
+        </header>
+
+        {% if entrada.tags %}
+            <div class="detail-tags">
+                {% for tag in entrada.tags.split(',') %}
+                    {% set clean_tag = tag.strip() %}
+                    {% if clean_tag %}
+                        <span class="tag">#{{ clean_tag }}</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <hr class="detail-divider">
+
+        <div class="detail-body">
+            <!-- Formateo de saltos de línea para texto -->
+            {{ entrada.contenido.replace('\n', '<br>') | safe }}
+        </div>
+
+        <footer class="detail-footer">
+            <small class="text-muted">Registrado en la base de datos local SQLite.</small>
+        </footer>
+    </article>
+</div>
+{% endblock %}

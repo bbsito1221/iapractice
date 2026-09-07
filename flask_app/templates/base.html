@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bitácora Digital{% endblock %} - Registro de Actividades</title>
+    <!-- Estilos CSS personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Fuente Inter / Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="{{ url_for('index') }}" class="logo">
+                <span class="logo-icon">📖</span>
+                <span class="logo-text">Bitácora<strong>Digital</strong></span>
+            </a>
+            <nav class="nav-links">
+                <a href="{{ url_for('index') }}" class="nav-link">Inicio</a>
+                <a href="{{ url_for('nueva_entrada') }}" class="btn btn-primary">+ Nueva Entrada</a>
+                <a href="{{ url_for('exportar') }}" class="btn btn-secondary" title="Descargar copia de seguridad JSON">⬇ Exportar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- Mensajes Flash informativos -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <span>{{ message }}</span>
+                            <button type="button" class="close-alert" onclick="this.parentElement.remove();">&times;</button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>Bitácora Digital &copy; 2026 &bull; Desarrollada con <strong>Flask, HTML5, CSS3 y JavaScript</strong>.</p>
+            <p class="text-muted">Base de datos SQLite integrada localmente.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript interactivo -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

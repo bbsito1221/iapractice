@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="dashboard-header">
+    <div class="header-info">
+        <h1>Entradas de la Bitácora</h1>
+        <p class="subtitle">Registra el progreso, soluciones, lecciones aprendidas y actividades diarias.</p>
+    </div>
+    <div class="stats-badge">
+        <span class="stats-num">{{ total_entradas }}</span>
+        <span class="stats-label">Entradas Registradas</span>
+    </div>
+</section>
+
+<!-- Barra de Búsqueda y Filtro de Categoría -->
+<section class="filter-section">
+    <form method="GET" action="{{ url_for('index') }}" class="search-form">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input 
+                type="text" 
+                name="q" 
+                placeholder="Buscar por título, contenido o etiqueta..." 
+                value="{{ query }}"
+                autocomplete="off"
+            >
+            {% if query %}
+                <a href="{{ url_for('index', categoria=categoria_filtro) }}" class="clear-search" title="Limpiar búsqueda">&times;</a>
+            {% endif %}
+        </div>
+
+        <div class="category-select-wrapper">
+            <select name="categoria" onchange="this.form.submit()">
+                <option value="">Todas las Categorías</option>
+                {% for cat in categorias %}
+                    <option value="{{ cat }}" {% if categoria_filtro == cat %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-filter">Filtrar</button>
+        {% if query or categoria_filtro %}
+            <a href="{{ url_for('index') }}" class="btn btn-outline">Restablecer</a>
+        {% endif %}
+    </form>
+</section>
+
+<!-- Listado de Entradas -->
+<section class="entries-grid">
+    {% if entradas %}
+        {% for entrada in entradas %}
+            <article class="entry-card" data-category="{{ entrada.categoria }}">
+                <div class="entry-header">
+                    <span class="badge-category">{{ entrada.categoria }}</span>
+                    <time class="entry-date">{{ entrada.fecha }}</time>
+                </div>
+                
+                <h2 class="entry-title">
+                    <a href="{{ url_for('ver_entrada', id=entrada.id) }}">{{ entrada.titulo }}</a>
+                </h2>
+                
+                <p class="entry-preview">
+                    {{ entrada.contenido[:150] }}{% if entrada.contenido|length > 150 %}...{% endif %}
+                </p>
+
+                {% if entrada.tags %}
+                    <div class="entry-tags">
+                        {% for tag in entrada.tags.split(',') %}
+                            {% set clean_tag = tag.strip() %}
+                            {% if clean_tag %}
+                                <span class="tag">#{{ clean_tag }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="entry-footer">
+                    <span class="status-indicator status-{{ entrada.estado|lower|replace(' ', '-') }}">
+                        {{ entrada.estado }}
+                    </span>
+                    <div class="card-actions">
+                        <a href="{{ url_for('ver_entrada', id=entrada.id) }}" class="link-action">Leer más &rarr;</a>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3>No se encontraron entradas</h3>
+            {% if query or categoria_filtro %}
+                <p>No hay resultados que coincidan con tus criterios de búsqueda o filtro.</p>
+                <a href="{{ url_for('index') }}" class="btn btn-outline">Ver todas las entradas</a>
+            {% else %}
+                <p>Tu bitácora aún no tiene notas registradas. ¡Comienza a documentar hoy!</p>
+                <a href="{{ url_for('nueva_entrada') }}" class="btn btn-primary">+ Crear primera entrada</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
