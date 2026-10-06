@@ -1,1 +1,256 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Paleta Institucional Liceo Industrial (liceorbl.cl) */
+    --color-primario: #1B365D;       /* Azul Marino Institucional */
+    --color-acento: #E85D04;         /* Naranja Institucional */
+    --color-fondo-claro: #F5F6F8;    /* Gris Suave para fondos */
+    --color-fondo-base: #FFFFFF;     /* Blanco puro para tarjetas y áreas de lectura */
+    --color-texto-principal: #1A202C;/* Gris Carbón de Alto Contraste */
+    --color-texto-secundario: #4A5568;/* Gris Medio Legible (WCAG AA > 5.5:1) */
+
+    color-scheme: light;
+  }
+
+  * {
+    border-color: #E2E8F0;
+  }
+
+  html {
+    background-color: #F5F6F8;
+    color: #1A202C;
+  }
+
+  body {
+    background-color: #F5F6F8;
+    color: #1A202C;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Scrollbar personalizado institucional */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F5F6F8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E0;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E85D04;
+  }
+}
+
+/* ==========================================================================
+   PALETA INSTITUCIONAL LICEO INDUSTRIAL (liceorbl.cl) - ALTO CONTRASTE
+   ========================================================================== */
+
+/* Clases de utilidad institucional directa */
+.bg-liceo-primary {
+  background-color: #1B365D !important;
+  color: #FFFFFF !important;
+}
+
+.text-liceo-primary {
+  color: #1B365D !important;
+}
+
+.border-liceo-primary {
+  border-color: #1B365D !important;
+}
+
+.bg-liceo-accent {
+  background-color: #E85D04 !important;
+  color: #FFFFFF !important;
+}
+
+.text-liceo-accent {
+  color: #E85D04 !important;
+}
+
+.border-liceo-accent {
+  border-color: #E85D04 !important;
+}
+
+.hover\:bg-liceo-accent-hover:hover {
+  background-color: #D04F00 !important;
+}
+
+/* Normalización de componentes para asegurar contraste perfecto */
+input, select, textarea {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E0 !important;
+  color: #1A202C !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #718096 !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #1B365D !important;
+  box-shadow: 0 0 0 2px rgba(27, 54, 93, 0.15) !important;
+  outline: none !important;
+}
+
+/* Mapeo universal de contenedores y textos para alto contraste */
+.bg-\[\#0B0E11\],
+.bg-\[\#0b0e11\] {
+  background-color: #F5F6F8 !important;
+}
+
+.bg-\[\#181A20\],
+.bg-\[\#181a20\] {
+  background-color: #FFFFFF !important;
+  color: #1A202C !important;
+}
+
+.bg-\[\#12161C\],
+.bg-\[\#12161c\] {
+  background-color: #F5F6F8 !important;
+  color: #1A202C !important;
+}
+
+.bg-\[\#14171D\],
+.bg-\[\#14171d\] {
+  background-color: #FFFFFF !important;
+  color: #1A202C !important;
+}
+
+.bg-\[\#1E2329\],
+.bg-\[\#1e2329\] {
+  background-color: #EDF2F7 !important;
+}
+
+.bg-\[\#2B313A\],
+.bg-\[\#2b313a\] {
+  background-color: #E2E8F0 !important;
+}
+
+/* Bordes limpios y sólidos */
+.border-\[\#2B313A\],
+.border-\[\#2b313a\],
+.border-\[\#2B313A\]\/50,
+.border-\[\#2b313a\]\/50 {
+  border-color: #E2E8F0 !important;
+}
+
+.divide-\[\#2B313A\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: #E2E8F0 !important;
+}
+
+/* Tipografía de alto contraste */
+.text-\[\#EAECEF\],
+.text-\[\#eaecef\] {
+  color: #1A202C !important;
+}
+
+.text-\[\#848E9C\],
+.text-\[\#848e9c\] {
+  color: #4A5568 !important;
+}
+
+.text-\[\#5E6673\],
+.text-\[\#5e6673\] {
+  color: #718096 !important;
+}
+
+/* Reemplazo de viejo dorado por naranja institucional */
+.text-\[\#F0B90B\],
+.text-\[\#f0b90b\] {
+  color: #E85D04 !important;
+}
+
+.border-\[\#F0B90B\],
+.border-\[\#f0b90b\] {
+  border-color: #E85D04 !important;
+}
+
+.bg-\[\#F0B90B\],
+.bg-\[\#f0b90b\] {
+  background-color: #E85D04 !important;
+  color: #FFFFFF !important;
+}
+
+.hover\:bg-\[\#FCD535\]:hover,
+.hover\:bg-\[\#fcd535\]:hover {
+  background-color: #D04F00 !important;
+  color: #FFFFFF !important;
+}
+
+.bg-\[\#F0B90B\]\/10,
+.bg-\[\#F0B90B\]\/15,
+.bg-\[\#F0B90B\]\/20 {
+  background-color: rgba(232, 93, 4, 0.12) !important;
+}
+
+.border-\[\#F0B90B\]\/30,
+.border-\[\#F0B90B\]\/40 {
+  border-color: rgba(232, 93, 4, 0.35) !important;
+}
+
+/* Estados Hover Limpios */
+.hover\:bg-\[\#1E2329\]:hover,
+.hover\:bg-\[\#1e2329\]:hover {
+  background-color: #EDF2F7 !important;
+}
+
+.hover\:bg-\[\#2B313A\]:hover,
+.hover\:bg-\[\#2b313a\]:hover {
+  background-color: #E2E8F0 !important;
+}
+
+.hover\:bg-\[\#12161C\]:hover,
+.hover\:bg-\[\#12161c\]:hover {
+  background-color: #F5F6F8 !important;
+}
+
+.hover\:text-\[\#EAECEF\]:hover,
+.hover\:text-\[\#eaecef\]:hover {
+  color: #1B365D !important;
+}
+
+/* Estilos de Impresión */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+}
+
+/* ==========================================================================
+   OPTIMIZACIÓN MÓVIL: TECLADO VIRTUAL & ESTABILIDAD SIN DEFORMACIÓN
+   ========================================================================== */
+
+/* Previene el zoom automático de Safari iOS en inputs (que causa que la pantalla se deforme) */
+@media screen and (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Padding de scroll para que los campos enfocados nunca queden pegados al borde o teclado */
+html,
+body,
+.overflow-y-auto {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  scroll-padding-bottom: 240px;
+}
+
+/* Altura segura en móviles considerando barra de navegación y teclado dinámico */
+.mobile-sheet-container {
+  max-height: 94dvh;
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+

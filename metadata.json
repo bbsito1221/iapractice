@@ -1,6 +1,6 @@
 {
   "name": "Bitácora Digital",
-  "description": "Aplicación de bitácora digital para registrar, organizar y consultar entradas, notas y actividades.",
+  "description": "Plataforma institucional de gestión, supervisión y certificación foliada de prácticas profesionales del Liceo Industrial Electrotecnia (liceorbl.cl). Control institucional por roles, validación de tutores de empresa, emisión de libro oficial y notificaciones por correo.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

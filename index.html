@@ -1,18 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bitácora Digital</title>
-    <meta name="description" content="Aplicación de bitácora digital para registrar, organizar y consultar entradas, notas y actividades." />
-    <meta property="og:title" content="Bitácora Digital" />
-    <meta property="og:description" content="Aplicación de bitácora digital para registrar, organizar y consultar entradas, notas y actividades." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content" />
+    <title>Bitácora Digital • Liceo Industrial</title>
+    <meta name="description" content="Plataforma institucional de gestión, supervisión y certificación foliada de prácticas profesionales del Liceo Industrial Electrotecnia (liceorbl.cl)." />
+    <meta property="og:title" content="Bitácora Digital • Liceo Industrial" />
+    <meta property="og:description" content="Plataforma institucional de gestión, supervisión y certificación foliada de prácticas profesionales del Liceo Industrial Electrotecnia (liceorbl.cl)." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function() {
+        try {
+          localStorage.removeItem('bitacora_digital_theme');
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          document.documentElement.style.colorScheme = 'light';
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
